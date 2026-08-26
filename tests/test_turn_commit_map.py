@@ -102,3 +102,72 @@ def test_new_text_survival_can_be_exact_when_old_text_was_uncommitted():
     assert edge["deleted_recall"] == 0.0
     assert edge["survival_recall"] == 1.0
     assert edge["confidence"] == "exact"
+
+
+def test_extract_actions_supports_camel_case_edit_payload():
+    import pandas as pd
+
+    row = pd.Series({
+        "turn_number": 10,
+        "tool_name": "edit",
+        "file_path": None,
+        "tool_input_json": {
+            "filePath": "/repo/pkg/a.py",
+            "oldString": "old()",
+            "newString": "new()",
+        },
+        "timestamp": None,
+    })
+    actions = MODULE.extract_actions(row)
+    assert len(actions) == 1
+    assert actions[0]["file_path"] == "/repo/pkg/a.py"
+    assert actions[0]["added_lines"] == ["new()"]
+    assert actions[0]["deleted_lines"] == ["old()"]
+
+
+def test_extract_actions_expands_multi_edit():
+    import pandas as pd
+
+    row = pd.Series({
+        "turn_number": 20,
+        "tool_name": "MultiEdit",
+        "file_path": "/repo/pkg/a.py",
+        "tool_input_json": {
+            "file_path": "/repo/pkg/a.py",
+            "edits": [
+                {"old_string": "one", "new_string": "first"},
+                {"old_string": "two", "new_string": "second"},
+            ],
+        },
+        "timestamp": None,
+    })
+    actions = MODULE.extract_actions(row)
+    assert [action["action_index"] for action in actions] == [0, 1]
+    assert actions[0]["added_lines"] == ["first"]
+    assert actions[1]["deleted_lines"] == ["two"]
+
+
+def test_extract_actions_parses_apply_patch_per_file():
+    import pandas as pd
+
+    row = pd.Series({
+        "turn_number": 30,
+        "tool_name": "apply_patch",
+        "file_path": None,
+        "tool_input_json": {
+            "patchText": """*** Begin Patch
+*** Update File: pkg/a.py
+@@
+-old()
++new()
+*** Add File: pkg/b.py
++created = True
+*** End Patch""",
+        },
+        "timestamp": None,
+    })
+    actions = MODULE.extract_actions(row)
+    assert [action["file_path"] for action in actions] == ["pkg/a.py", "pkg/b.py"]
+    assert actions[0]["added_lines"] == ["new()"]
+    assert actions[0]["deleted_lines"] == ["old()"]
+    assert actions[1]["added_lines"] == ["created = True"]

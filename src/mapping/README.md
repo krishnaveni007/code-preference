@@ -19,6 +19,11 @@ text from that action survives in the commit. Deleted text is reported
 separately because text introduced earlier in the same uncommitted checkpoint
 will not appear as a deletion relative to the commit's parent.
 
+Write extraction supports the observed snake-case and camelCase `Edit`/`Write`
+schemas, expands `MultiEdit` into indexed sub-actions, and parses `apply_patch`
+into one indexed action per file. `turn_commit_edges.csv` includes
+`action_index` so multiple changes from one tool turn remain distinguishable.
+
 ## Run
 
 ```bash

@@ -46,13 +46,19 @@ import argparse
 import json
 import os
 import time
+from pathlib import Path
 
 import pandas as pd
 import numpy as np
+from dotenv import load_dotenv
 from openai import OpenAI
 from tqdm import tqdm
 
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+# Load a repository-local .env when present. An already-exported environment
+# variable takes precedence because load_dotenv does not override by default.
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+load_dotenv(PROJECT_ROOT / ".env")
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 MODEL = "gpt-5.4-mini"
 
 # GPT-5.x reasoning-tier models reject an explicit temperature and only
@@ -153,6 +159,37 @@ ALL_IDS = [r["id"] for r in RUBRICS]
 # ---------------------------------------------------------------------
 
 RAW_LOG_PATH = "chat_llm_raw_log.jsonl"
+_RAW_RESPONSE_CACHE = {}
+
+
+def _cache_key(context: dict) -> tuple:
+    return (
+        MODEL,
+        context.get("user_id"),
+        context.get("session_id"),
+        context.get("turn_number"),
+        context.get("stage"),
+        context.get("rubric_id"),
+    )
+
+
+def _load_raw_response_cache(path: str) -> None:
+    """Reuse successful logged calls when resuming an interrupted run."""
+    _RAW_RESPONSE_CACHE.clear()
+    if not os.path.exists(path):
+        return
+    with open(path) as handle:
+        for line in handle:
+            try:
+                record = json.loads(line)
+                if not record.get("parsed_ok") or not record.get("raw_response"):
+                    continue
+                parsed = json.loads(record["raw_response"])
+                _RAW_RESPONSE_CACHE[_cache_key(record)] = parsed
+            except (json.JSONDecodeError, TypeError):
+                continue
+    if _RAW_RESPONSE_CACHE:
+        print(f"Loaded {len(_RAW_RESPONSE_CACHE)} successful cached judge responses")
 
 
 def _log_raw(record: dict):
@@ -161,6 +198,9 @@ def _log_raw(record: dict):
 
 
 def _call_json(system_prompt: str, user_content: str, log_context: dict, max_retries: int = 3) -> dict:
+    cached = _RAW_RESPONSE_CACHE.get(_cache_key(log_context))
+    if cached is not None:
+        return cached
     for attempt in range(max_retries):
         record = {
             "timestamp": time.time(),
@@ -452,10 +492,18 @@ def select_pilot_users(selected: pd.DataFrame, n: int, seed: int = 0) -> list:
         remaining -= 1
     if hs and remaining > 0:
         picked += list(rng.choice(hs, size=min(remaining, len(hs)), replace=False))
+    # Natural longitudinal samples do not have high-signal/control arms.
+    # Fill any remaining pilot slots uniformly from users not already picked.
+    if remaining > 0:
+        available = [u for u in users["user_id"].tolist() if u not in picked]
+        if available:
+            picked += list(rng.choice(
+                available, size=min(remaining, len(available)), replace=False))
     return picked
 
 
 def main():
+    global RAW_LOG_PATH
     ap = argparse.ArgumentParser()
     ap.add_argument("--data-dir", required=True,
                     help="dir with sessions.parquet / conversations.parquet")
@@ -477,6 +525,8 @@ def main():
                          "already scored in an earlier pass, e.g. a pilot.")
     args = ap.parse_args()
     os.makedirs(args.out_dir, exist_ok=True)
+    RAW_LOG_PATH = os.path.join(args.out_dir, "chat_llm_raw_log.jsonl")
+    _load_raw_response_cache(RAW_LOG_PATH)
 
     selected = pd.read_csv(args.selected_sessions)
 

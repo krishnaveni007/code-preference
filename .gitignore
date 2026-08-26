@@ -16,5 +16,10 @@ __pycache__/
 .venv/
 venv/
 
+# Local secrets
+.env
+.env.*
+!.env.example
+
 # OS junk
 .DS_Store

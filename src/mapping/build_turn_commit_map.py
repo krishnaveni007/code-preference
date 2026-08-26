@@ -82,6 +82,51 @@ def edit_delta(old: str | None, new: str | None) -> tuple[list[str], list[str]]:
     return added, deleted
 
 
+def _payload_value(payload: dict[str, Any], *names: str, default: Any = None) -> Any:
+    """Return the first present payload key, supporting agent schema aliases."""
+    for name in names:
+        if name in payload:
+            return payload[name]
+    return default
+
+
+def parse_apply_patch_actions(patch_text: str | None) -> list[dict[str, Any]]:
+    """Extract per-file changed lines from the ``*** Begin Patch`` format.
+
+    OpenCode-style ``apply_patch`` calls store a whole patch in ``patchText``
+    rather than exposing ``file_path``/``old_string``/``new_string``.  The
+    commit matcher only needs the actual added/deleted lines grouped by path,
+    so parse those directly without trying to reconstruct complete file text.
+    """
+    actions: list[dict[str, Any]] = []
+    current: dict[str, Any] | None = None
+    for raw in str(patch_text or "").splitlines():
+        match = re.match(r"\*\*\* (Update|Add|Delete) File: (.+)$", raw)
+        if match:
+            if current is not None:
+                actions.append(current)
+            current = {
+                "file_path": match.group(2).strip(),
+                "operation": match.group(1).lower(),
+                "added_lines": [],
+                "deleted_lines": [],
+            }
+            continue
+        if current is None or raw.startswith("@@"):
+            continue
+        if raw.startswith("+"):
+            value = normalise_line(raw[1:])
+            if value:
+                current["added_lines"].append(value)
+        elif raw.startswith("-"):
+            value = normalise_line(raw[1:])
+            if value:
+                current["deleted_lines"].append(value)
+    if current is not None:
+        actions.append(current)
+    return actions
+
+
 @dataclass
 class PatchFile:
     path: str
@@ -161,31 +206,79 @@ def text_recall(needle: list[str], haystack: list[str]) -> float:
     return max(multiset_recall(needle, haystack), fuzzy_recall(needle, haystack))
 
 
-def extract_action(row: pd.Series) -> dict[str, Any] | None:
+def extract_actions(row: pd.Series) -> list[dict[str, Any]]:
+    """Return zero or more normalized file-writing actions for one tool call.
+
+    A single ``MultiEdit`` or ``apply_patch`` call can touch multiple logical
+    edits/files, so callers must not assume one transcript row equals one
+    change action. ``action_index`` is stable within the tool call.
+    """
     tool = str(row.get("tool_name") or "").lower().replace("-", "_")
     compact_tool = tool.replace("_", "")
     if tool not in WRITE_TOOLS and compact_tool not in WRITE_TOOLS:
-        return None
+        return []
     payload = json_value(row.get("tool_input_json"), {})
     if not isinstance(payload, dict):
-        return None
-    path = row.get("file_path") or payload.get("file_path") or payload.get("path")
-    if not path:
-        return None
+        return []
 
-    old = payload.get("old_string", payload.get("old_text", ""))
-    new = payload.get("new_string", payload.get("new_text"))
-    if new is None:
-        new = payload.get("content", "")
-    added, deleted = edit_delta(old, new)
-    return {
+    base = {
         "tool_turn_number": int(row["turn_number"]),
         "tool_name": row.get("tool_name"),
-        "file_path": str(path),
-        "added_lines": added,
-        "deleted_lines": deleted,
         "timestamp": row.get("timestamp"),
     }
+
+    if tool == "apply_patch" or compact_tool == "applypatch":
+        parsed = parse_apply_patch_actions(
+            _payload_value(payload, "patchText", "patch_text", "patch", default="")
+        )
+        return [
+            {
+                **base,
+                "action_index": index,
+                "file_path": item["file_path"],
+                "added_lines": item["added_lines"],
+                "deleted_lines": item["deleted_lines"],
+                "operation": item["operation"],
+            }
+            for index, item in enumerate(parsed)
+        ]
+
+    path = (
+        row.get("file_path")
+        or _payload_value(payload, "file_path", "filePath", "path")
+    )
+    if not path:
+        return []
+
+    edits = payload.get("edits") if isinstance(payload.get("edits"), list) else [payload]
+    actions = []
+    for index, edit in enumerate(edits):
+        if not isinstance(edit, dict):
+            continue
+        old = _payload_value(edit, "old_string", "oldString", "old_text", "oldText", default="")
+        new = _payload_value(edit, "new_string", "newString", "new_text", "newText")
+        if new is None:
+            new = _payload_value(edit, "content", default="")
+        added, deleted = edit_delta(old, new)
+        actions.append({
+            **base,
+            "action_index": index,
+            "file_path": str(path),
+            "added_lines": added,
+            "deleted_lines": deleted,
+            "operation": "write" if not old else "edit",
+        })
+    return actions
+
+
+def extract_action(row: pd.Series) -> dict[str, Any] | None:
+    """Backward-compatible single-action wrapper.
+
+    New code should call :func:`extract_actions`; this helper preserves the
+    previous public surface for simple Edit/Write callers.
+    """
+    actions = extract_actions(row)
+    return actions[0] if actions else None
 
 
 def assign_actions_to_prompts(conversation: pd.DataFrame) -> list[dict[str, Any]]:
@@ -203,16 +296,17 @@ def assign_actions_to_prompts(conversation: pd.DataFrame) -> list[dict[str, Any]
             prompt_rows[pidx + 1]["turn_number"] <= row["turn_number"]
         ):
             pidx += 1
-        action = extract_action(row)
-        if action is not None and pidx >= 0:
+        actions_for_row = extract_actions(row)
+        if actions_for_row and pidx >= 0:
             prompt = prompt_rows[pidx]
-            action.update({
-                "user_turn_number": int(prompt["turn_number"]),
-                "conversation_turn_number": prompt["conversation_turn_number"],
-                "prompt_timestamp": prompt["timestamp"],
-                "prompt_content": prompt["content"],
-            })
-            actions.append(action)
+            for action in actions_for_row:
+                action.update({
+                    "user_turn_number": int(prompt["turn_number"]),
+                    "conversation_turn_number": prompt["conversation_turn_number"],
+                    "prompt_timestamp": prompt["timestamp"],
+                    "prompt_content": prompt["content"],
+                })
+                actions.append(action)
     return actions
 
 
@@ -259,6 +353,7 @@ def match_action(action: dict[str, Any], commit: pd.Series) -> dict[str, Any] | 
         "user_turn_number": action["user_turn_number"],
         "conversation_turn_number": action["conversation_turn_number"],
         "tool_turn_number": action["tool_turn_number"],
+        "action_index": action.get("action_index", 0),
         "tool_name": action["tool_name"],
         "commit_sha": commit["commit_sha"],
         "commit_date": commit.get("commit_date"),
@@ -322,7 +417,7 @@ def build_map(data_dir: Path, session_id: str) -> tuple[pd.DataFrame, pd.DataFra
                 edges.append(edge)
     edge_columns = [
         "session_id", "user_turn_number", "conversation_turn_number",
-        "tool_turn_number", "tool_name", "commit_sha", "commit_date",
+        "tool_turn_number", "action_index", "tool_name", "commit_sha", "commit_date",
         "commit_message", "agent_file_path", "commit_file_path",
         "action_added_lines", "action_deleted_lines", "added_recall",
         "deleted_recall", "changed_text_recall", "survival_recall", "confidence",
