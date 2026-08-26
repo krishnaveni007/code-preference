@@ -41,3 +41,34 @@ python3 -m src.extraction.preference_context \
   --turn-number 78 \
   --out outputs/preference_context_651abcf9_t78.json
 ```
+
+## Preference judge
+
+`preference_judge.py` imports `preference_context` and extracts each context
+internally from a session and raw user-turn number. It sends the context to a
+conservative structured-output judge, returns all 14 rubric axes as High, Low,
+or N/A, adds ternary scores (`1`, `-1`, `0`), and preserves short evidence tied
+only to user-message turns. Agent behavior and commit survival cannot produce a
+directional label without user-grounded evidence.
+
+```bash
+python3 -m src.extraction.preference_judge \
+  --data-dir data/swechat_data \
+  --session-id 12b970e8-63a4-43a5-8c4f-9a1c3e6b860e \
+  --turn-number 948 \
+  --model gpt-5.4-mini \
+  --out-dir outputs/preference_vectors
+```
+
+For a full selected cohort, replace `--session-id/--turn-number` with
+`--selected-sessions selected_sessions.csv`. The output mirrors the existing
+chat vectorizer:
+
+- `preference_turn_judgments.jsonl`: complete structured judge outputs and audit metadata
+- `preference_turn_vectors.csv`: flat per-turn scores, labels, confidence, rationale, and evidence
+- `preference_session_vectors.csv`: recent/majority/mean session vectors with support and conflict
+- `preference_user_vectors.csv`: equal-weight user vectors aggregated across supported sessions
+
+Successful JSONL results are reused when resuming. Failed calls remain marked
+in the turn output and are excluded from session/user aggregation rather than
+being silently treated as genuine N/A judgments.
