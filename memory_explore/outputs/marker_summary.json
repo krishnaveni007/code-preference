@@ -1,0 +1,1504 @@
+{
+  "rows_scanned": 2692480,
+  "rows_total": 2692480,
+  "sessions_seen": 5825,
+  "system_event_rows": 58938,
+  "strong_hit_rows": 489,
+  "sessions_with_strong_hit": 183,
+  "marker_counts": {
+    "WEAK::<system-reminder>": 28915,
+    "WEAK::CLAUDE.md": 25726,
+    "WEAK::AGENTS.md": 10039,
+    "WEAK::copilot-instructions.md": 1474,
+    "WEAK::.cursorrules": 810,
+    "STRONG::# CLAUDE.md": 489,
+    "WEAK::Contents of ": 104
+  },
+  "turn_type_of_strong_hits": {
+    "tool_result": 190,
+    "progress": 163,
+    "tool_use": 77,
+    "user_prompt": 43,
+    "assistant_response": 8,
+    "queue_operation": 6,
+    "system_injected": 2
+  },
+  "turn_type_of_weak_hits": {
+    "tool_result": 25340,
+    "progress": 19266,
+    "tool_use": 4794,
+    "file_snapshot": 3928,
+    "user_prompt": 2122,
+    "system_event": 1448,
+    "system_injected": 1407,
+    "assistant_response": 1032,
+    "queue_operation": 352,
+    "assistant_thinking": 24
+  },
+  "first_strong_per_session": {
+    "4b1079c4-dd15-4f74-a6bb-6bfca810f7d0": {
+      "turn_number": 39,
+      "timestamp": "2026-02-11T08:34:16.992000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "2b3756eb-8c69-4980-ac0a-8d2c534931d8": {
+      "turn_number": 366,
+      "timestamp": "2026-02-11T14:59:48.490000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "809e358e-f9d8-4d9d-a17a-6cfc524cc4b6": {
+      "turn_number": 35,
+      "timestamp": "2026-02-13T19:45:52.883000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "dad11b7b-a4b2-4820-bccd-e68339a6e22c": {
+      "turn_number": 33,
+      "timestamp": "2026-02-13T23:25:11.550000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "6a6a5379-09b8-4419-a506-2862c7179231": {
+      "turn_number": 133,
+      "timestamp": "2026-02-13T13:19:47.682000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "2a84a5a3-0636-4047-aa95-342b1ebe7d83": {
+      "turn_number": 1783,
+      "timestamp": "2026-02-16T08:40:08.587000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "59e617bb-6c8b-48f4-867a-d8a975554627": {
+      "turn_number": 64,
+      "timestamp": "2026-02-14T09:09:39.586000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "f4c392cf-0256-4012-ad4b-fc14082f37c6": {
+      "turn_number": 53,
+      "timestamp": "2026-02-19T01:33:23.894000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "784711e3-8a70-4942-859e-2e94f0db2389": {
+      "turn_number": 2,
+      "timestamp": "2026-02-15T19:56:05.999000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "64568731-ddbb-4092-bc6f-b1f4785c79c6": {
+      "turn_number": 3,
+      "timestamp": "2026-02-17T15:35:54.949000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "75b73db4-09fd-4c97-be16-7589f05d7c1b": {
+      "turn_number": 4,
+      "timestamp": "2026-02-21T21:34:47.900000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "cd680c64-9724-4fd5-a7dd-f0a396efb0eb": {
+      "turn_number": 540,
+      "timestamp": "2026-02-15T02:44:25.303000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "410c9611-5a08-49a3-9520-28e347223e15": {
+      "turn_number": 241,
+      "timestamp": "2026-02-20T12:47:20.594000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "2b3d00ea-c696-4982-bc37-f1eb58f0d91e": {
+      "turn_number": 221,
+      "timestamp": "2026-02-10T18:44:03.717000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "99cdf571-8e39-4ec4-a0cc-e8ee7c5af682": {
+      "turn_number": 892,
+      "timestamp": "2026-02-12T01:48:45.576000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "8a35bf3e-b280-4b5d-bb0f-ccde53426ee5": {
+      "turn_number": 4938,
+      "timestamp": "2026-02-13T19:42:18.862000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "1190138a-68bc-410f-8a52-511881d4efc8": {
+      "turn_number": 708,
+      "timestamp": "2026-02-13T23:05:34.175000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "e6bd273f-ac77-4f7f-a0a4-e87d31bc2e25": {
+      "turn_number": 47,
+      "timestamp": "2026-02-13T15:37:34.821000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "54f7c913-6cd2-41ba-8ac5-cac794ad9524": {
+      "turn_number": 261,
+      "timestamp": "2026-02-12T14:54:47.667000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "42e975bd-2992-4b11-a525-4591afe3a1d5": {
+      "turn_number": 5,
+      "timestamp": "2026-02-11T09:27:09.744000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "989294d2-2cba-4a6d-abc0-3fe75cecdc99": {
+      "turn_number": 18,
+      "timestamp": "2026-02-11T11:33:54.545000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "c1da937f-054a-4056-a262-b2f5cd5fd482": {
+      "turn_number": 148,
+      "timestamp": "2026-02-11T11:01:06.342000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "e1596380-b641-40e3-a91b-2c951b0bca43": {
+      "turn_number": 2,
+      "timestamp": "2026-02-15T18:54:27.929000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "c5ee95d1-03b2-4571-938e-b145c5144301": {
+      "turn_number": 2,
+      "timestamp": "2026-02-15T19:13:44.082000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "2224e5cf-582c-437b-bc86-7ca8cb6a8362": {
+      "turn_number": 25,
+      "timestamp": "2026-02-14T00:01:45.983000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "caceb4d5-3d32-41d9-a7b4-3c8db979728e": {
+      "turn_number": 3,
+      "timestamp": "2026-02-14T13:26:43.845000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "255d17df-8768-452f-9b58-43d14ffac341": {
+      "turn_number": 3,
+      "timestamp": "2026-02-14T15:25:45.637000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "aba4a2c6-c75e-48a5-af54-ea4f168c6006": {
+      "turn_number": 9,
+      "timestamp": "2026-02-14T15:42:35.367000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "6837b282-17f5-48c2-8d64-332f627ed812": {
+      "turn_number": 3,
+      "timestamp": "2026-02-11T19:14:00.858000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "f2cd426c-b011-4f90-bfc8-3fba314c08b0": {
+      "turn_number": 173,
+      "timestamp": "2026-02-15T07:43:15.227000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "0e19590c-2126-45e2-bc59-81d76d9da168": {
+      "turn_number": 5,
+      "timestamp": "2026-02-16T13:51:13.516000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "5f5edb65-ad65-43f4-b3ee-45a610b43e23": {
+      "turn_number": 5,
+      "timestamp": "2026-02-15T23:59:33.187000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "ebf5fc88-a945-4dc4-8a96-27c0f79091ce": {
+      "turn_number": 7,
+      "timestamp": "2026-02-17T08:21:50.979000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "2a117374-8028-4060-a17e-fe63e0c20099": {
+      "turn_number": 7,
+      "timestamp": "2026-02-17T09:33:04.748000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "c712b6d4-5d02-4aa8-bb23-79742d957fb4": {
+      "turn_number": 6,
+      "timestamp": "2026-02-18T07:02:54.637000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "dbaec118-8eb9-4041-a00b-2671ad909f90": {
+      "turn_number": 26,
+      "timestamp": "2026-02-18T07:55:12.912000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "524c8035-6583-4e25-a007-4b0a972ea26a": {
+      "turn_number": 8,
+      "timestamp": "2026-02-18T08:23:41.683000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "49bd7984-1a22-48cf-ac49-89e1aef3e5c3": {
+      "turn_number": 68,
+      "timestamp": "2026-02-18T14:49:51.143000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "b4405345-c791-4ab8-bdc5-13577fc15008": {
+      "turn_number": 25,
+      "timestamp": "2026-02-18T06:06:58.208000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "f26cbbb8-9179-4b37-b5a7-5dcd5fcbc3be": {
+      "turn_number": 483,
+      "timestamp": "2026-02-18T15:02:17.907000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "95dc735b-0187-4533-a3ed-5b46bdfa8689": {
+      "turn_number": 32,
+      "timestamp": "2026-02-20T10:26:13.519000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "8cd2424f-f8be-4fc4-9ca9-520883bbc5ed": {
+      "turn_number": 8,
+      "timestamp": "2026-02-17T16:00:21.773000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "453ab82f-f3d7-49c1-af2b-11430e6c6a20": {
+      "turn_number": 774,
+      "timestamp": "2026-02-18T01:05:39.770000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "c87481dc-868e-4804-bb24-155f713c266d": {
+      "turn_number": 2,
+      "timestamp": "2026-02-18T01:13:56.666000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "a90c57b6-17f7-4b39-abb5-aac76dcd618d": {
+      "turn_number": 6,
+      "timestamp": "2026-02-18T06:39:55.748000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "43d7178a-205b-4e6a-b636-5e52534e8ae6": {
+      "turn_number": 490,
+      "timestamp": "2026-02-22T06:53:04.088000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "44c37ad3-f40c-41b9-8b74-127f3f88cc96": {
+      "turn_number": 14,
+      "timestamp": "2026-02-22T14:29:14.993000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "8016a255-0828-4a01-ae11-a955eebf2fb8": {
+      "turn_number": 338,
+      "timestamp": "2026-02-20T23:15:13.708000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "34db8997-aa1b-47e7-a34f-8e1e161a8410": {
+      "turn_number": 48,
+      "timestamp": "2026-02-21T10:01:57.038000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "c5ec7cc8-d169-472a-b895-ca3b67cb44bf": {
+      "turn_number": 237,
+      "timestamp": "2026-02-23T08:17:52.392000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "0c25aab6-b74a-487f-a6cb-4c8db5b4480b": {
+      "turn_number": 307,
+      "timestamp": "2026-02-24T01:36:32.228000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "a62695f0-6ea5-402e-b957-549bce17a1a8": {
+      "turn_number": 56,
+      "timestamp": "2026-02-24T01:19:42.430000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "eac1bebd-3aa4-4d57-b5df-dd1ada4cc4da": {
+      "turn_number": 229,
+      "timestamp": "2026-02-24T16:37:33.068000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "d0c9bbeb-350c-4b98-8cf9-00cb0afbcfcb": {
+      "turn_number": 218,
+      "timestamp": "2026-02-24T16:53:15.068000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "db7b9129-3db7-42fe-bef7-fa13a713f44d": {
+      "turn_number": 33,
+      "timestamp": "2026-02-20T20:05:25.171000+00:00",
+      "turn_type": "assistant_response",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "26cd749e-9e51-4592-a2f3-e0a2736c7380": {
+      "turn_number": 1410,
+      "timestamp": "2026-02-24T13:09:33.009000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "f9f50b02-e5bb-4ec8-bc57-465f9e2b1e06": {
+      "turn_number": 140,
+      "timestamp": "2026-02-24T17:20:19.399000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "636e2eb6-3399-4fd4-92fc-1cad83ba9bf3": {
+      "turn_number": 79,
+      "timestamp": "2026-02-25T11:10:58.370000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "dae89c9a-0a8c-49ef-9cd1-8b69155c7539": {
+      "turn_number": 383,
+      "timestamp": "2026-02-25T11:33:29.565000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "a8414516-44c8-4756-9970-eda138db5217": {
+      "turn_number": 48,
+      "timestamp": "2026-02-25T13:06:46.248000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "77fb5c78-9cf7-44c3-898c-2894a27ef340": {
+      "turn_number": 5,
+      "timestamp": "2026-02-25T12:24:45.477000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "ae359c6b-9328-47f6-b158-6e100a84d639": {
+      "turn_number": 2,
+      "timestamp": "2026-02-25T12:37:07.046000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "5e568ca0-1995-4163-a7aa-84dc01309f78": {
+      "turn_number": 562,
+      "timestamp": "2026-02-25T06:01:12.395000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "2026-01-20-c26d2153-23c8-42ed-ab6c-808579b64e5b": {
+      "turn_number": 92,
+      "timestamp": "2026-01-20T18:44:48.545000+00:00",
+      "turn_type": "assistant_response",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "e3f90308-e16d-45bd-ada5-eb45b8529571": {
+      "turn_number": 17,
+      "timestamp": "2026-02-26T02:19:49.258000+00:00",
+      "turn_type": "queue_operation",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "52518bed-3ae7-49cb-834f-c2d1d9231e9e": {
+      "turn_number": 233,
+      "timestamp": "2026-02-25T10:29:59.295000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "86dfa07c-e9c1-48d1-a2c3-e641b7e9c4e6": {
+      "turn_number": 292,
+      "timestamp": "2026-02-24T07:14:46.069000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "704f372d-c48e-4b0c-a7e1-776c81521213": {
+      "turn_number": 763,
+      "timestamp": "2026-02-25T04:55:20.211000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "2d0f8232-8902-459e-84fd-75c018c6922d": {
+      "turn_number": 13,
+      "timestamp": "2026-02-25T17:15:11.124000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "9288aefd-eb3d-4823-b8af-08f130f3f556": {
+      "turn_number": 18,
+      "timestamp": "2026-02-26T15:41:04.101000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "3dcfcbc4-7def-4758-a646-2092dd9bfd88": {
+      "turn_number": 198,
+      "timestamp": "2026-02-26T18:00:20.571000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "e16d7f5a-724b-4966-97fc-e6d6b350a1d7": {
+      "turn_number": 438,
+      "timestamp": "2026-03-01T02:47:27.507000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "d443288a-e9c7-4d1f-9945-dec930d8b680": {
+      "turn_number": 208,
+      "timestamp": "2026-03-01T01:02:17.603000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "8580d7fb-4ba6-46b3-a8fd-999682d28a4c": {
+      "turn_number": 742,
+      "timestamp": "2026-02-28T01:52:55.999000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "15fa1dd3-d017-468d-afa8-86f3ed14e6a3": {
+      "turn_number": 1055,
+      "timestamp": "2026-03-01T15:47:42.525000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "ea79bbc2-f727-431d-a23f-4fab3cf3adde": {
+      "turn_number": 383,
+      "timestamp": "2026-03-01T23:18:33.954000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "c86a060f-90d9-4a67-b12b-4a172a6a1127": {
+      "turn_number": 26,
+      "timestamp": "2026-02-22T21:10:13.127000+00:00",
+      "turn_type": "assistant_response",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "eb3216cd-5523-4f24-8b2a-81a0fb7fe7c9": {
+      "turn_number": 252,
+      "timestamp": "2026-03-02T08:30:43.032000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "83c8cdaa-9e07-470d-a305-ec5b7ba03185": {
+      "turn_number": 94,
+      "timestamp": "2026-03-02T13:48:28.327000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "6a9e82b7-148a-4650-834f-63e9f6c7029a": {
+      "turn_number": 36,
+      "timestamp": "2026-03-02T17:01:20.672000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "e3eb5b40-0ad7-4d4f-94bf-374265b8826c": {
+      "turn_number": 142,
+      "timestamp": "2026-03-03T06:42:51.308000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "e9793ffc-43cc-4c69-be9a-3707406b92c5": {
+      "turn_number": 4,
+      "timestamp": "2026-03-02T15:23:40.653000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "2f9faf61-9306-49a6-80c2-09bbe1f978a0": {
+      "turn_number": 87,
+      "timestamp": "2026-03-04T01:06:30.076000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "93ab4d2e-a88c-4d2c-b17a-f26bb4cbc8f3": {
+      "turn_number": 40,
+      "timestamp": "2026-03-01T23:30:49.355000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "4ef87098-bca4-42b1-92ff-1e7c694087bb": {
+      "turn_number": 51,
+      "timestamp": "2026-03-04T07:11:52.172000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "b6e8a4a3-078d-42a6-bedb-6dbbe65c0c51": {
+      "turn_number": 173,
+      "timestamp": "2026-03-04T10:01:59.584000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "8125a95b-a4af-4ffc-93cb-1eee577c3da5": {
+      "turn_number": 7,
+      "timestamp": "2026-03-05T00:37:24.899000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "2409fcfc-e323-4c68-aaf4-5721a1e2568e": {
+      "turn_number": 133,
+      "timestamp": "2026-03-05T16:48:27.572000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "caae9f6a-1739-4a68-aa67-f82c86715889": {
+      "turn_number": 2,
+      "timestamp": "2026-03-05T07:11:19.898000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "6cd499c2-3377-484f-acbc-f795d066075d": {
+      "turn_number": 15,
+      "timestamp": "2026-03-04T18:47:18.524000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "10c84299-220a-4445-ad5c-5c3339bed289": {
+      "turn_number": 7,
+      "timestamp": "2026-03-03T04:33:10.609000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "57c3d902-bf27-4333-bda9-c7677910c209": {
+      "turn_number": 3,
+      "timestamp": "2026-02-25T17:19:47.733000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "008d0ecf-0046-4993-ba13-6370601ece23": {
+      "turn_number": 350,
+      "timestamp": "2026-03-03T12:30:34.941000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "47d3262c-59ca-4f84-bf8c-8e26e61d789c": {
+      "turn_number": 120,
+      "timestamp": "2026-03-05T23:03:52.289000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "3cbc097a-5068-4ad2-b5fe-a51587bac925": {
+      "turn_number": 164,
+      "timestamp": "2026-03-05T16:52:57.388000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "16a5c736-9609-48fb-8a10-a4595c039b21": {
+      "turn_number": 9,
+      "timestamp": "2026-03-06T14:57:17.621000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "7c05e7c2-244d-4f4e-b348-fd383c75e8d3": {
+      "turn_number": 35,
+      "timestamp": "2026-03-06T16:30:05.011000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "b9a3ebd3-a03e-47ea-a7c4-14c49157aae2": {
+      "turn_number": 72,
+      "timestamp": "2026-03-06T18:11:53.901000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "4fd0ef18-7579-4e26-8f6b-d5a5cb2e2cd0": {
+      "turn_number": 257,
+      "timestamp": "2026-03-07T00:12:08.390000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "86681285-2137-4376-83d8-1d432faeaeb7": {
+      "turn_number": 225,
+      "timestamp": "2026-03-07T08:08:53.835000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "3f4d704b-5a12-46cb-be73-e7c46900d900": {
+      "turn_number": 72,
+      "timestamp": "2026-03-07T08:16:55.576000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "390eb1d0-b91d-44e5-b82e-61612bb7f322": {
+      "turn_number": 66,
+      "timestamp": "2026-03-08T07:56:07.066000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "8ce492ed-6038-485d-8bbb-9e1f28742a34": {
+      "turn_number": 133,
+      "timestamp": "2026-03-08T08:58:07.796000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "6a6be09e-7381-4751-bcd0-8c94593d4332": {
+      "turn_number": 90,
+      "timestamp": "2026-03-09T12:30:52.217000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "a7548b97-5607-4346-a9ad-80eeb32362bd": {
+      "turn_number": 571,
+      "timestamp": "2026-03-08T08:20:44.576000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "34d3b2b5-0a7e-421c-ab83-b5409070798a": {
+      "turn_number": 66,
+      "timestamp": "2026-03-09T19:07:33.972000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "d61d8734-cc9c-4595-9b19-6a46be37ec98": {
+      "turn_number": 491,
+      "timestamp": "2026-03-10T15:17:18.062000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "19288b02-e3dc-47ee-8d8c-6da04672012c": {
+      "turn_number": 434,
+      "timestamp": "2026-03-12T06:15:04.757000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "839d51b5-c698-45fe-989c-33ec19f12e04": {
+      "turn_number": 3,
+      "timestamp": "2026-03-12T12:48:49.177000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "a5b9652f-3046-42e7-9702-1ab1636c1101": {
+      "turn_number": 102,
+      "timestamp": "2026-03-11T13:36:41.059000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "979b8d5d-6132-43f3-8169-c1eb40b835e3": {
+      "turn_number": 24,
+      "timestamp": "2026-03-11T05:27:19.389000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "c30a760b-775f-4ceb-bb2d-970393abc9df": {
+      "turn_number": 237,
+      "timestamp": "2026-03-11T06:19:42.229000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "f2a56d41-bfd1-4fdb-ab4e-069fe811ea01": {
+      "turn_number": 44,
+      "timestamp": "2026-03-12T13:23:28.817000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "76fe060b-c21f-4411-84d2-a89917269d45": {
+      "turn_number": 33,
+      "timestamp": "2026-03-14T00:18:06.836000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "adc89e31-a8a5-4df6-ae3a-71ad98ec9854": {
+      "turn_number": 24,
+      "timestamp": "2026-03-13T11:45:49.408000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "e5bb989d-06ff-4fe9-a8fe-20eb98aad32f": {
+      "turn_number": 1319,
+      "timestamp": "2026-03-14T12:40:42.864000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "443d9387-9119-4760-a36b-33768f03ff49": {
+      "turn_number": 1263,
+      "timestamp": "2026-03-16T04:16:12.609000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "0dec1d80-ca41-4a70-8938-0d4304246229": {
+      "turn_number": 159,
+      "timestamp": "2026-03-14T14:48:20.167000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "7cd6d473-008b-4bbf-a349-d647b8109402": {
+      "turn_number": 46,
+      "timestamp": "2026-03-14T01:21:42.466000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "ff8afa9b-ac8b-4633-9b59-6d8901d31b9c": {
+      "turn_number": 82,
+      "timestamp": "2026-03-08T08:34:50.467000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "a076b20b-20ba-44e5-8224-ebc0abd2b113": {
+      "turn_number": 91,
+      "timestamp": "2026-03-16T04:20:41.498000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "efd6834a-82b9-43b5-aced-3759acdd78d3": {
+      "turn_number": 156,
+      "timestamp": "2026-03-16T07:12:09.501000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "23bd02ee-e611-4488-a3d4-71ca93985943": {
+      "turn_number": 43,
+      "timestamp": "2026-03-16T11:10:21.078000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "cdce7e9e-7052-48dd-9017-ffce2307866c": {
+      "turn_number": 49,
+      "timestamp": "2026-03-16T00:50:14.425000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "4576eb7c-1172-45d9-a16e-403ca10c2691": {
+      "turn_number": 70,
+      "timestamp": "2026-03-17T01:10:33.166000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "d840f2ed-ce54-4238-a77f-3e4b3bafe27b": {
+      "turn_number": 12,
+      "timestamp": "2026-03-17T16:22:31.891000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "9a5ec5e9-2dfe-4caf-9ef9-8cbbd954bf95": {
+      "turn_number": 334,
+      "timestamp": "2026-03-17T16:04:00.378000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "50633cd8-2ab8-4107-9a64-7f258725f2c3": {
+      "turn_number": 23,
+      "timestamp": "2026-03-18T09:03:44.456000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "05426a4d-bf40-4d5c-ba28-e1d83f414383": {
+      "turn_number": 609,
+      "timestamp": "2026-03-18T15:38:33.549000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "1fbe0976-5d23-4331-a694-506d23771356": {
+      "turn_number": 535,
+      "timestamp": "2026-03-04T20:48:01.278000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "0430fa98-1e3b-4b80-89b3-ddfd41747038": {
+      "turn_number": 219,
+      "timestamp": "2026-03-07T03:29:47.374000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "24339b4a-cb92-4065-aa17-3444a97ad914": {
+      "turn_number": 1187,
+      "timestamp": "2026-03-07T09:45:42.375000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "a74cbf2d-24be-4caf-93f5-f6ae7886aa9a": {
+      "turn_number": 247,
+      "timestamp": "2026-03-08T09:44:39.112000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "8e7baf11-3bd1-4ea3-a424-f44b5ebd8957": {
+      "turn_number": 156,
+      "timestamp": "2026-03-20T01:19:27.048000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "e92e4f89-b702-495a-8b08-17b669fb04a5": {
+      "turn_number": 987,
+      "timestamp": "2026-03-20T16:47:51.510000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "ba07785b-93cd-448d-8019-8cba9e5975ee": {
+      "turn_number": 180,
+      "timestamp": "2026-03-20T02:40:08.598000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "e60b00ec-d617-4551-ba2c-9f8a21189553": {
+      "turn_number": 78,
+      "timestamp": "2026-03-20T23:43:53.017000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "d15d2caa-036b-4e20-870f-3165828b759a": {
+      "turn_number": 304,
+      "timestamp": "2026-03-21T08:51:09.601000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "36cccd59-fa6f-49b1-ac90-84b1fcd1c9f3": {
+      "turn_number": 70,
+      "timestamp": "2026-03-21T19:43:09.471000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "8150b1a6-dc34-40c9-b5db-c7ca39265418": {
+      "turn_number": 299,
+      "timestamp": "2026-03-22T00:58:27.406000+00:00",
+      "turn_type": "system_injected",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "e1c9d4f0-f6a5-4719-9857-1d47e8565066": {
+      "turn_number": 140,
+      "timestamp": "2026-03-22T08:32:04.335000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "d6845d03-1c19-43e4-81ec-694c30a3a3ed": {
+      "turn_number": 38,
+      "timestamp": "2026-03-22T17:07:04.040000+00:00",
+      "turn_type": "system_injected",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "9c30bc08-20ec-4370-b992-642b4eda7d22": {
+      "turn_number": 14,
+      "timestamp": "2026-03-22T14:20:58.350000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "722db7c9-9d3f-42ea-ae53-305196c88c01": {
+      "turn_number": 514,
+      "timestamp": "2026-03-22T06:07:16.784000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "5aa28b51-d3e0-4d80-b18a-b1f4a22e76aa": {
+      "turn_number": 158,
+      "timestamp": "2026-03-20T01:19:27.048000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "fb2b82a8-a33a-4ab2-873c-4429adde06a2": {
+      "turn_number": 1107,
+      "timestamp": "2026-03-24T17:27:49.123000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "1ff6f320-260d-4185-8677-fa7c1dbaf03e": {
+      "turn_number": 572,
+      "timestamp": "2026-03-24T19:12:32.416000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "1ef98655-3d83-48da-a4af-7d7ec25c1e54": {
+      "turn_number": 185,
+      "timestamp": "2026-03-27T22:57:08.677000+00:00",
+      "turn_type": "progress",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "2df45c59-7897-4fe9-9c47-cb66fad8680b": {
+      "turn_number": 520,
+      "timestamp": "2026-03-10T07:34:52.282000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "258eac11-690a-479c-b97b-86a69f51b677": {
+      "turn_number": 28,
+      "timestamp": "2026-03-10T14:12:46.608000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "2a0e01f7-52ec-4ad9-954a-b9c5b1ce8aac": {
+      "turn_number": 46,
+      "timestamp": "2026-03-10T14:07:40.911000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "1ee89f95-297b-4d8a-b1f7-49c621c6add9": {
+      "turn_number": 10,
+      "timestamp": "2026-03-10T14:23:25.859000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "0bc8148b-2e5a-476e-be1e-cf08b88d6fd8": {
+      "turn_number": 156,
+      "timestamp": "2026-03-20T01:19:27.048000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "5744bb2e-1c7c-4093-bb41-d3d54f5f1a70": {
+      "turn_number": 0,
+      "timestamp": "2026-03-31T05:38:29.992000+00:00",
+      "turn_type": "queue_operation",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "735d638f-6cdf-43ab-a835-72cc7d395a44": {
+      "turn_number": 49,
+      "timestamp": "2026-03-30T14:39:09.574000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "fae58785-be4a-4d43-9aaf-e50ab4cecb8e": {
+      "turn_number": 438,
+      "timestamp": "2026-03-31T03:37:39.993000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "b03cb029-abe2-43af-9bd1-80d5278334c4": {
+      "turn_number": 130,
+      "timestamp": "2026-04-01T13:22:01.507000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "a154be74-820e-4205-b68b-002484e6a181": {
+      "turn_number": 224,
+      "timestamp": "2026-03-31T13:32:04.740000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "cc9e8aa5-769d-41ea-98ce-ff5a905f2f04": {
+      "turn_number": 613,
+      "timestamp": "2026-03-30T17:03:32.594000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "92cb3b02-e6a8-48b2-842e-7c28593173b7": {
+      "turn_number": 28,
+      "timestamp": "2026-04-01T00:08:12.995000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "daabd2e9-83b9-40b2-9ef3-166faefe8017": {
+      "turn_number": 48,
+      "timestamp": "2026-04-01T00:22:38.954000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "069fbb8a-f938-4d66-b7a1-3325e0b56512": {
+      "turn_number": 0,
+      "timestamp": "2026-04-03T05:27:16.461000+00:00",
+      "turn_type": "queue_operation",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "dddd31e6-ea65-46b6-b666-0e092ed18c1c": {
+      "turn_number": 0,
+      "timestamp": "2026-04-03T06:04:09.276000+00:00",
+      "turn_type": "queue_operation",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "0dd61fb0-a212-4742-8130-160d8659d1e6": {
+      "turn_number": 8,
+      "timestamp": "2026-02-28T17:33:04.225000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "2def5933-7d7d-48c7-9c80-b3730c4d8579": {
+      "turn_number": 1407,
+      "timestamp": "2026-03-21T15:33:56.946000+00:00",
+      "turn_type": "assistant_response",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "a82319ab-ac7f-481c-9297-234906fe5722": {
+      "turn_number": 25,
+      "timestamp": "2026-03-23T02:07:59.743000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "f1944913-fc34-48f4-9b74-e8cff1bbe016": {
+      "turn_number": 455,
+      "timestamp": "2026-04-01T03:22:47.141000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "4a4cec5b-7d9b-4eed-ad37-c65aba23d8f8": {
+      "turn_number": 6,
+      "timestamp": "2026-04-04T13:52:43.482000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "2716a7a1-758b-40c0-9ba5-730f2397973f": {
+      "turn_number": 2014,
+      "timestamp": "2026-04-04T13:33:08.644000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "5eb1b55e-5034-451d-8c63-a05218abec11": {
+      "turn_number": 5,
+      "timestamp": "2026-04-05T11:21:50.502000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "a2103211-deeb-43e9-845e-37626d6bc1d8": {
+      "turn_number": 59,
+      "timestamp": "2026-02-12T15:12:10.102000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "93e9a848-1942-43d4-a81b-2c5cedc20252": {
+      "turn_number": 72,
+      "timestamp": "2026-04-08T19:37:51.255000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "6dc18778-5e96-4800-8a13-4e327516745c": {
+      "turn_number": 470,
+      "timestamp": "2026-04-02T14:11:05.159000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "b9382fe5-90aa-4058-83b0-8081713ba22b": {
+      "turn_number": 7,
+      "timestamp": "2026-03-27T00:07:07.238000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "d7d2b32f-b704-4791-8c78-182de21cc2c6": {
+      "turn_number": 405,
+      "timestamp": "2026-04-07T02:55:06.016000+00:00",
+      "turn_type": "user_prompt",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "732f6d37-cbd1-43c1-9ad9-8758131e665c": {
+      "turn_number": 229,
+      "timestamp": "2026-04-13T07:51:31.844000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "09437e76-2b37-45d6-92bc-057f15daa607": {
+      "turn_number": 33,
+      "timestamp": "2026-04-11T17:02:43.388000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "8e238d3a-d6e3-417a-b657-3c9d913d34bd": {
+      "turn_number": 339,
+      "timestamp": "2026-04-17T10:17:51.933000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "9177cf1b-c54f-45b3-bb43-094147f9031d": {
+      "turn_number": 25,
+      "timestamp": "2026-04-14T02:15:05.794000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "48b914b6-50fb-446a-ac57-13eb497301d2": {
+      "turn_number": 5,
+      "timestamp": "2026-04-15T06:52:51.975000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "ae4e7552-5677-46ed-bc8f-1e67ee5a7148": {
+      "turn_number": 85,
+      "timestamp": "2026-02-21T02:13:58.567000+00:00",
+      "turn_type": "assistant_response",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "60639794-6077-4e88-a4d3-70aa566f1233": {
+      "turn_number": 7,
+      "timestamp": "2026-04-06T23:27:34.070000+00:00",
+      "turn_type": "tool_result",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    },
+    "573e479b-9c6e-4352-b100-7ad59f96b07d": {
+      "turn_number": 515,
+      "timestamp": "2026-04-16T03:53:48.790000+00:00",
+      "turn_type": "tool_use",
+      "markers": [
+        "# CLAUDE.md"
+      ]
+    }
+  }
+}

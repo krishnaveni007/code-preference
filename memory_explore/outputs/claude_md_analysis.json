@@ -1,0 +1,121 @@
+{
+  "n_snapshots": 631,
+  "n_distinct_files": 179,
+  "n_repos": 92,
+  "n_users": 87,
+  "attribution_counts": {
+    "human_only": 309,
+    "agent_only": 285,
+    "mixed": 37
+  },
+  "attribution_by_status": {
+    "A": {
+      "agent_only": 89,
+      "human_only": 44,
+      "mixed": 3
+    },
+    "M": {
+      "agent_only": 194,
+      "human_only": 246,
+      "mixed": 32
+    },
+    "D": {
+      "human_only": 18,
+      "mixed": 2
+    },
+    "T": {
+      "agent_only": 2,
+      "human_only": 1
+    }
+  },
+  "n_with_agent_version": 322,
+  "size_chars": {
+    "n": 162,
+    "min": 9,
+    "p25": 1578,
+    "median": 3042,
+    "p75": 7930,
+    "p90": 16865,
+    "max": 81669,
+    "mean": 7088
+  },
+  "size_lines": {
+    "median": 71,
+    "p90": 319,
+    "max": 2935
+  },
+  "edits_per_file": {
+    "n_files": 179,
+    "median": 1,
+    "p90": 6,
+    "max": 51,
+    "histogram": {
+      "1": 98,
+      "2": 34,
+      "3": 10,
+      "4": 11,
+      "5": 6,
+      "6": 3,
+      "7": 3,
+      "8": 2,
+      "13": 2,
+      "15": 1,
+      "16": 1,
+      "18": 1,
+      "19": 1,
+      "24": 2,
+      "26": 1,
+      "41": 1,
+      "46": 1,
+      "51": 1
+    }
+  },
+  "gap_between_edits_days": {
+    "n": 452,
+    "min": 0.0,
+    "p10": 0.0,
+    "median": 0.115,
+    "p75": 1.05,
+    "p90": 3.46,
+    "max": 55.97,
+    "frac_same_day": 0.739,
+    "frac_within_hour": 0.414
+  },
+  "churn_lines_per_edit": {
+    "median": 8,
+    "p90": 78,
+    "max": 2975
+  },
+  "common_h2_headings": {
+    "Architecture": 32,
+    "Key Files": 24,
+    "Dependencies": 24,
+    "Project Overview": 20,
+    "Purpose": 18,
+    "For AI Agents": 18,
+    "Commands": 18,
+    "Project Structure": 14,
+    "Testing": 12,
+    "Git Workflow": 7,
+    "Code Style": 7,
+    "Environment Variables": 7,
+    "Overview": 6,
+    "References": 6,
+    "Tech Stack": 6,
+    "Build & Test": 6,
+    "Conventions": 5,
+    "Documentation": 5,
+    "Build, Test, and Development Commands": 5,
+    "Testing Guidelines": 5,
+    "Build Commands": 5,
+    "Development Paradigm": 4,
+    "Abstract": 4,
+    "Table of Contents": 4,
+    "Project Structure & Module Organization": 4,
+    "Commit & Pull Request Guidelines": 4,
+    "Development Workflow": 4,
+    "Rules": 4,
+    "Hooks": 3,
+    "Best Practices": 3
+  }
+}
