@@ -16,7 +16,7 @@ import pandas as pd
 from scipy.cluster.hierarchy import dendrogram, fcluster, linkage
 from sklearn.metrics import silhouette_score
 
-V = Path("outputs/discovery/method1/v2/user_profiles")
+V = Path("outputs/discovery/method1/final/user_profiles")
 SURFACE, INK, INK2, MUTED, GRID = "#fcfcfb", "#0b0b0b", "#52514e", "#898781", "#e1e0d9"
 BLUES = ["#fcfcfb", "#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"]
 

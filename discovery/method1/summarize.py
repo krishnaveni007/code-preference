@@ -74,8 +74,8 @@ def summarize(text: str, *, model: str = MODEL, max_retries: int = 3) -> list[st
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--positives", type=Path,
-                        default=Path("outputs/discovery/method1/positives_dedup.jsonl"))
-    parser.add_argument("--out", type=Path, default=Path("outputs/discovery/method1/statements.jsonl"))
+                        default=Path("outputs/discovery/method1/gate/positives_dedup.jsonl"))
+    parser.add_argument("--out", type=Path, default=Path("outputs/discovery/method1/final/statements.jsonl"))
     parser.add_argument("--model", default=MODEL)
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--limit", type=int, default=20)

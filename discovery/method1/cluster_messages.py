@@ -166,8 +166,8 @@ def stage_name(out_dir: Path, ks: list[int], workers: int) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("stage", choices=["embed", "cluster", "name", "all"])
-    parser.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/positives.jsonl"))
-    parser.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/cluster_raw"))
+    parser.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/final/statements_flat.jsonl"))
+    parser.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/final/embeddings"))
     parser.add_argument("--k", type=int, nargs="+", default=[20, 40, 80])
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--workers", type=int, default=8)

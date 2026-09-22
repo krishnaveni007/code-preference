@@ -23,8 +23,8 @@ from sklearn.metrics import (calinski_harabasz_score, davies_bouldin_score,
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/cluster_raw_dedup"))
-    parser.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/positives_dedup.jsonl"))
+    parser.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/archive/raw_message_kmeans/cluster_raw_dedup"))
+    parser.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/gate/positives_dedup.jsonl"))
     parser.add_argument("--k", type=int, nargs="+", default=[20, 40, 80])
     parser.add_argument("--detail-k", type=int, default=40)
     args = parser.parse_args()

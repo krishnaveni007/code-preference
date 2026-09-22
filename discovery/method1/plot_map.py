@@ -22,9 +22,9 @@ BLUE, NOISE = "#2a78d6", "#c3c2b7"
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("--clusters", type=Path, default=Path("outputs/discovery/method1/cluster_hdbscan/clusters_mcs100_leaf_ms10.json"))
-    p.add_argument("--umap2d", type=Path, default=Path("outputs/discovery/method1/cluster_hdbscan/umap_2d_s0.npy"))
-    p.add_argument("--out", type=Path, default=Path("outputs/discovery/method1/cluster_hdbscan/map_mcs100.png"))
+    p.add_argument("--clusters", type=Path, default=Path("outputs/discovery/method1/final/hdbscan/clusters_mcs100_leaf_ms10.json"))
+    p.add_argument("--umap2d", type=Path, default=Path("outputs/discovery/method1/final/hdbscan/umap_2d_s0.npy"))
+    p.add_argument("--out", type=Path, default=Path("outputs/discovery/method1/final/hdbscan/map_mcs100.png"))
     p.add_argument("--rubrics", type=Path, default=None,
                    help="consolidated rubrics json; labels then show rubric number (+A/B for merged clusters) and short names")
     args = p.parse_args()

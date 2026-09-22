@@ -13,10 +13,10 @@ import numpy as np
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("--rubrics", type=Path, default=Path("outputs/discovery/method1/v2/rubrics_draft.json"))
-    p.add_argument("--clusters", type=Path, default=Path("outputs/discovery/method1/v2/cluster_hdbscan/clusters_mcs100_leaf_ms10.json"))
-    p.add_argument("--statements", type=Path, default=Path("outputs/discovery/method1/v2/statements_flat.jsonl"))
-    p.add_argument("--originals", type=Path, default=Path("outputs/discovery/method1/positives_dedup.jsonl"))
+    p.add_argument("--rubrics", type=Path, default=Path("outputs/discovery/method1/final/rubrics_draft.json"))
+    p.add_argument("--clusters", type=Path, default=Path("outputs/discovery/method1/final/hdbscan/clusters_mcs100_leaf_ms10.json"))
+    p.add_argument("--statements", type=Path, default=Path("outputs/discovery/method1/final/statements_flat.jsonl"))
+    p.add_argument("--originals", type=Path, default=Path("outputs/discovery/method1/gate/positives_dedup.jsonl"))
     args = p.parse_args()
 
     norm = lambda s: re.sub(r"\W+", " ", s.lower()).strip()

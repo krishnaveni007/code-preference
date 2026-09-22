@@ -59,12 +59,12 @@ def name_one(inside: list[str], outside: list[str], retries: int = 3) -> dict:
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/cluster_statements"))
-    p.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/statements_flat.jsonl"))
+    p.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/final/hdbscan"))
+    p.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/final/statements_flat.jsonl"))
     p.add_argument("--k", type=int, default=20)
     p.add_argument("--clusters-file", type=Path, default=None,
                    help="cluster json to name (default clusters_k{k}.json); noise label -1 is allowed")
-    p.add_argument("--emb-dir", type=Path, default=None, help="where embeddings.npy lives (default --out-dir)")
+    p.add_argument("--emb-dir", type=Path, default=Path("outputs/discovery/method1/final/embeddings"), help="where embeddings.npy lives (default --out-dir)")
     p.add_argument("--tag", default=None, help="output name: categories_{tag}.md (default k{k})")
     p.add_argument("--n-inside", type=int, default=30)
     p.add_argument("--n-outside", type=int, default=30)

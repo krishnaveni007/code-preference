@@ -44,9 +44,9 @@ def summarize(labels: np.ndarray, persistence: np.ndarray) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("stage", choices=["sweep", "run"])
-    parser.add_argument("--emb-dir", type=Path, default=Path("outputs/discovery/method1/cluster_statements"))
-    parser.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/statements_flat.jsonl"))
-    parser.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/cluster_hdbscan"))
+    parser.add_argument("--emb-dir", type=Path, default=Path("outputs/discovery/method1/final/embeddings"))
+    parser.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/final/statements_flat.jsonl"))
+    parser.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/final/hdbscan"))
     parser.add_argument("--dims", type=int, default=10)
     parser.add_argument("--neighbors", type=int, default=30)
     parser.add_argument("--mcs", type=int, nargs="+", default=[30, 50, 100])

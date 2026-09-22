@@ -9,7 +9,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-V = Path("outputs/discovery/method1/v2")
+V = Path("outputs/discovery/method1/final")
 drafts = {d["rank"]: d for d in json.loads((V / "rubrics_draft.json").read_text())}
 
 # (id, name, description, high, low, na, high_clusters, low_clusters, low_evidence, note)

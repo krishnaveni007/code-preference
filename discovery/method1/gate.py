@@ -223,7 +223,7 @@ def main() -> None:
 
     if args.all:
         run_all(load_turns(args.data_dir), model=args.model,
-                out_dir=args.out or Path("outputs/discovery/method1"), workers=args.workers)
+                out_dir=args.out or Path("outputs/discovery/method1/gate"), workers=args.workers)
         return
 
     turns = load_turns(args.data_dir)

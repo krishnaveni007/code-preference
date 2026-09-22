@@ -26,8 +26,8 @@ def centroids(X: np.ndarray, labels: np.ndarray, k: int) -> np.ndarray:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/cluster_statements"))
-    parser.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/statements_flat.jsonl"))
+    parser.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/archive/v1_prefers_x_over_y/cluster_statements"))
+    parser.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/archive/v1_prefers_x_over_y/statements_flat.jsonl"))
     parser.add_argument("--k", type=int, default=40)
     parser.add_argument("--seeds", type=int, nargs="+", default=[1, 2])
     parser.add_argument("--stable-jaccard", type=float, default=0.5)

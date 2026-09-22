@@ -25,8 +25,8 @@ def load(out_dir: Path, k: int):
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/cluster_statements"))
-    parser.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/statements_flat.jsonl"))
+    parser.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/archive/v1_prefers_x_over_y/cluster_statements"))
+    parser.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/archive/v1_prefers_x_over_y/statements_flat.jsonl"))
     parser.add_argument("--coarse", type=int, default=20)
     parser.add_argument("--fine", type=int, default=40)
     parser.add_argument("--nest", type=float, default=0.6)

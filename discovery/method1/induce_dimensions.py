@@ -244,8 +244,8 @@ def stage_merge(out_dir: Path, distance: float, model: str, workers: int) -> Non
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("stage", choices=["induce", "merge"])
-    parser.add_argument("--statements", type=Path, default=Path("outputs/discovery/method1/statements_flat.jsonl"))
-    parser.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/induction"))
+    parser.add_argument("--statements", type=Path, default=Path("outputs/discovery/method1/archive/v1_prefers_x_over_y/statements_flat.jsonl"))
+    parser.add_argument("--out-dir", type=Path, default=Path("outputs/discovery/method1/archive/batch_induction/induction"))
     parser.add_argument("--batch-size", type=int, default=300)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--model", default=INDUCE_MODEL)

@@ -61,8 +61,8 @@ SCHEMA = {
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("--drafts", type=Path, default=Path("outputs/discovery/method1/v2/rubrics_draft.json"))
-    p.add_argument("--out", type=Path, default=Path("outputs/discovery/method1/v2/rubrics"))
+    p.add_argument("--drafts", type=Path, default=Path("outputs/discovery/method1/final/rubrics_draft.json"))
+    p.add_argument("--out", type=Path, default=Path("outputs/discovery/method1/final/rubrics"))
     args = p.parse_args()
     drafts = json.loads(args.drafts.read_text())
     by_rank = {d["rank"]: d for d in drafts}

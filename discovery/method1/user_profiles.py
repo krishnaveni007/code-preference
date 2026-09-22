@@ -12,7 +12,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-V = Path("outputs/discovery/method1/v2")
+V = Path("outputs/discovery/method1/final")
 
 
 def main() -> None:
@@ -23,7 +23,7 @@ def main() -> None:
     args.out_dir.mkdir(exist_ok=True)
 
     final = json.loads((V / "rubrics_final.json").read_text())["rubrics"]
-    clusters = json.loads((V / "cluster_hdbscan/clusters_mcs100_leaf_ms10.json").read_text())
+    clusters = json.loads((V / "hdbscan/clusters_mcs100_leaf_ms10.json").read_text())
     ordered = sorted(clusters["clusters"], key=lambda c: -c["n_turns"])
     rank_to_cid = {i + 1: c["cluster"] for i, c in enumerate(ordered)}
     cid_to_rubric = {rank_to_cid[r]: rb["id"] for rb in final for r in rb["clusters"]}

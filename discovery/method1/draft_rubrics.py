@@ -70,9 +70,9 @@ def draft(cluster: dict, sample: list[str], retries: int = 3) -> dict:
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("--clusters", type=Path, default=Path("outputs/discovery/method1/v2/cluster_hdbscan/clusters_mcs100_leaf_ms10.json"))
-    p.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/v2/statements_flat.jsonl"))
-    p.add_argument("--out", type=Path, default=Path("outputs/discovery/method1/v2/rubrics_draft"))
+    p.add_argument("--clusters", type=Path, default=Path("outputs/discovery/method1/final/hdbscan/clusters_mcs100_leaf_ms10.json"))
+    p.add_argument("--positives", type=Path, default=Path("outputs/discovery/method1/final/statements_flat.jsonl"))
+    p.add_argument("--out", type=Path, default=Path("outputs/discovery/method1/final/rubrics_draft"))
     p.add_argument("--opposites", default="", help="rank pairs whose clusters are opposite poles, e.g. 6:14,7:14,13:14")
     p.add_argument("--seed", type=int, default=0)
     args = p.parse_args()
