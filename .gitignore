@@ -15,6 +15,8 @@ __pycache__/
 .cache/
 .venv/
 venv/
+node_modules/
+/scripts/node_modules
 
 # Local secrets
 .env
@@ -23,3 +25,6 @@ venv/
 
 # OS junk
 .DS_Store
+
+# External benchmark checkout (recreate with scripts/setup_swe_together.sh)
+/third_party/SWE-Together/

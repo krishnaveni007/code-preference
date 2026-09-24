@@ -1,0 +1,34 @@
+[paths]
+swe_chat_sessions = "data/swechat_data/sessions.parquet"
+swe_chat_data = "data/swechat_data"
+swe_together = "third_party/SWE-Together"
+output = "outputs/longitudinal_pilot"
+
+[sampling]
+users = 5
+replicates = 3
+minimum_prior_sessions = 5
+prior_sessions_per_user = 20
+seed = 20260907
+user_ids = ["Soph", "khaong", "gtrrz-victor", "Nagi-ovo", "nodo"]
+
+[preferences]
+model = "gpt-5.4-mini"
+confidence_threshold = 0.75
+minimum_supporting_sessions = 2
+maximum_profile_characters = 1800
+ordering = "confidence_desc_then_dimension"
+judged_axes = 14
+intervention_axes = 13
+excluded_from_intervention = ["specification_granularity"]
+
+[execution]
+agent_command = ""
+approved_budget_usd = 0.0
+
+[models]
+# Deliberate deviation from SWE-Together's canonical Gemini simulator.
+user_simulator = "openai/gpt-5.4-2026-03-05"
+intent_coverage = "openai/gpt-5-mini"
+message_tagger = "openai/gpt-5-mini"
+# Action-agent and correctness-judge models are pinned when the smoke plan is finalized.

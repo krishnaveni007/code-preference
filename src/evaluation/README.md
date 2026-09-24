@@ -26,11 +26,23 @@ has produced `outputs/chat_vectors/chat_session_vectors_full100.csv` / `chat_tur
 | `plot_histogram.py` | Bar chart of the % of preference-active turns per session | `outputs/chat_vectors/chat_turn_vectors_full100.csv` | `outputs/eval_out/` |
 | `rubric_item_correlation.py` | Pairwise rubric-trigger correlation with user-cluster bootstrap, FDR correction, arm diagnostics, report, and heatmap | turn-vectors CSVs | `outputs/eval_out/rubric_correlations/` |
 | `convergence_analysis.py` | Per-user cumulative-vector convergence over sessions | `data/swechat_data/`, session-vectors CSVs | `outputs/convergence_out/` |
+| `user_identifiability.py` | Retrieve each user from an independent future-session vector; reports per-user ranks and overall top-k accuracy | session-vectors CSV, `sessions.parquet` | `outputs/identifiability/` |
+| `persona_stability.py` | Test whether each held-out future vector returns to the persona cluster learned from historical vectors | session-vectors CSV, `sessions.parquet` | `outputs/persona_stability/` |
+| `multivariate_discriminability.py` | Whole-vector probability that a session is closer to its own leave-one-out user profile than another user's profile | session-vectors CSV | `outputs/multivariate_discriminability/` |
 
 Run from the repository root, e.g.:
 
 ```bash
 python src/evaluation/evaluate_full_run.py --out-dir outputs/eval_out
+```
+
+Run the direct user-identifiability/discriminability check:
+
+```bash
+python3 src/evaluation/user_identifiability.py \
+  --session-vectors outputs/chat_vectors/chat_session_vectors_full100.csv \
+  --data-dir data/swechat_data \
+  --out-dir outputs/identifiability
 ```
 
 Evaluate whether rubric items fire on the same turns:

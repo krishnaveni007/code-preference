@@ -426,6 +426,7 @@ def vectorize_sessions(
     *, data_dir: str | Path, session_ids: Iterable[str], out_dir: str | Path,
     model: str = "gpt-5.4-mini", turn_number: int | None = None,
     client: Any | None = None,
+    prompt_pushback_types: set[str] | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Extract, judge, and aggregate selected SWE-Chat sessions."""
     data_path = Path(data_dir)
@@ -447,6 +448,8 @@ def vectorize_sessions(
             (conversation["role"] == "user")
             & conversation["is_conversational"].fillna(False)
         ].sort_values("turn_number")
+        if prompt_pushback_types is not None:
+            prompts = prompts[prompts["prompt_pushback"].isin(prompt_pushback_types)]
         target_turns = [int(value) for value in prompts["turn_number"]]
         if turn_number is not None:
             if len(list(dict.fromkeys(str(value) for value in session_ids))) != 1:
