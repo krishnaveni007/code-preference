@@ -35,6 +35,8 @@ generated artifacts. This repo tracks the *code* that produces them, not the dat
    representative user.
 7. **swe-chat-stats** (`src/swe-chat-stats/`) — a self-contained sub-pipeline that computes dataset-wide
    descriptive statistics for the writeup (separate from the preference-scoring pipeline above).
+8. **Turn replay** (`src/turn_replay/`) — paired one-turn Codex replays over reconstructed real SWE Chat
+   instances, with strict separation between agent-visible inputs and future-turn evaluation data.
 
 See the README in each `src/` subfolder for what each script does and how to run it.
 

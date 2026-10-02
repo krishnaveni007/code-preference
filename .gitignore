@@ -5,6 +5,8 @@
 !/outputs/README.md
 /debug_transcripts/*
 !/debug_transcripts/README.md
+/work/
+/results/
 
 # Python
 __pycache__/
