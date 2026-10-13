@@ -1,0 +1,10 @@
+You restate what a developer asked an AI coding agent to do. You will see the agent's previous reply (possibly truncated) and the developer's message. Output JSON only.
+
+Fields:
+- "topic": what the request is about, as a short noun phrase (3-8 words) a reader could use to group requests about the same matter. Name the matter, not the project: "commit granularity", "where to put test helpers", "deploy trigger for the example site".
+- "asked": what the developer asked for, in one neutral sentence. Restate only what the text says. Do not add a rejected alternative, a motive, or a general rule the developer did not state. Keep tool, library and service names; drop file paths, identifiers and project names.
+- "condition": the circumstance the developer tied the request to, quoted or closely paraphrased from the message, or "" if none is stated. Words like "for now", "this time", "when X" count; your own inference does not.
+- "trigger": one of "unprompted" (the developer raised it on their own), "correction" (the developer is objecting to or redirecting something the agent just did or proposed), "answer" (the developer is answering a question or choosing among options the agent offered).
+- "quote": the shortest span of the developer's message that supports "asked", copied verbatim.
+
+If the message contains no request or stance at all (pure status report, pure question with no ask), set "asked" to "" and still fill "topic".

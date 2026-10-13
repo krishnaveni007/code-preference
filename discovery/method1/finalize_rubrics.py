@@ -21,11 +21,11 @@ FINAL = [
   "The task is itself a documentation task, or no documentation exists to maintain.",
   [1], [], "none", "Low side: no supporting statements in this run."),
  ("test_execution", "Test Execution",
-  "How actively the agent should run and extend tests while working.",
-  "Run the test suite continuously, add or extend tests with every change, treat tests as part of the deliverable.",
-  "Run only the tests directly relevant to the change, or only when asked.",
-  "The task is itself a testing task, or the project has no test infrastructure.",
-  [2], [], "none", "Low side: no supporting statements in this run."),
+  "How much verification the agent should run before a change counts as done: tests, automated checks, and review.",
+  "Run and extend tests continuously, enforce lint/type/format checks as blocking gates, and route changes through review passes before finalizing.",
+  "Verify only what the change directly touches; treat checks and review as optional or deferred.",
+  "The task is itself a verification task, or the project has no test, check, or review infrastructure.",
+  [2, 13, 16], [], "other_cluster", "Merged clusters 2 (test execution), 13 (review before proceeding) and 16 (lint/type gates): all three are verification before completion. Low side supported by cluster 14 (autonomous completion) for the review part; no statements take the Low side for tests or checks."),
  ("refactoring_tolerance", "Refactoring Tolerance",
   "How much existing code the agent should restructure while making a change.",
   "Consolidate duplication, separate concerns, and reorganize modules when it improves the structure.",
@@ -107,18 +107,14 @@ FINAL = [
 ]
 DROPPED = [
  ("session_state_management", 8, "Describes features of the product being built (session persistence, checkpoints), not how the agent should work. Project-specific."),
- ("review_gating", 13, "Removed by decision (2026-09-21)."),
  ("commit_granularity", 9, "Removed by decision (2026-09-21)."),
  ("naming_descriptiveness", 20, "Removed by decision (2026-09-21)."),
  ("ui_polish", "11, 19", "Removed by decision (2026-09-21)."),
- ("quality_gate_strictness", 16, "Removed by decision (2026-09-21)."),
 ]
 UNIFORM = [("Secrets and credentials must not be hardcoded", 14)]
 
 # fix: quality gates is draft rank 15 in the *rubrics* list but cluster rank 16 in the drafts
 for i, f in enumerate(FINAL):
-    if f[0] == "quality_gate_strictness":
-        FINAL[i] = f[:6] + ([16], [], "none", f[9])
     if f[0] == "config_externalization":
         FINAL[i] = f[:6] + ([15], [], "none", f[9])
     if f[0] == "failure_handling":
@@ -154,8 +150,8 @@ for (rid, name, desc, high, low, na, hc, lc, low_ev, note) in FINAL:
     high_from_a = rid not in ("agent_autonomy", "dependency_preference", "logging_verbosity")
     if rid == "agent_autonomy":
         high_q, low_q = quotes([14], "a"), quotes([6], "a")
-    elif rid == "review_gating":
-        high_q, low_q = quotes([13], "a"), quotes([14], "a")
+    elif rid == "test_execution":  # Low side comes from the autonomous-completion cluster
+        high_q, low_q = quotes([2], "a")[:1] + quotes([13], "a")[:1] + quotes([16], "a")[:1], quotes([14], "a")
     elif rid == "dependency_preference":
         high_q, low_q = quotes([10], "b"), quotes([10], "a")
     elif rid == "logging_verbosity":
@@ -171,9 +167,9 @@ MAPPING = [
  ("refactoring_tolerance", "Refactoring Tolerance", "refactoring_tolerance", "same", "Same question."),
  ("abstraction_preference", "Abstraction Preference", "refactoring_tolerance", "absorbed", "Statements about extracting helpers / reuse (213) mostly landed in the refactoring cluster; no separate cluster formed."),
  ("dependency_preference", "Dependency Preference", "dependency_preference", "same", "Same question; most statements in the data take the built-in side."),
- ("constraint_explicitness", "Constraint Explicitness", "—", "not found", "Type/schema/assertion statements (216) landed mainly in the quality-gates and testing clusters; typing appears as a gate to enforce rather than a code-design choice. The quality-gates cluster was not kept as a rubric."),
+ ("constraint_explicitness", "Constraint Explicitness", "test_execution", "absorbed", "Type/schema/assertion statements (216) landed mainly in the lint/type-gate and testing clusters, both now inside test_execution; typing appears as a check to enforce rather than a code-design choice."),
  ("failure_handling_preference", "Failure Handling", "failure_handling", "same", "Same question."),
- ("verification_testing_style", "Verification / Testing Style", "test_execution", "partial", "Old axis: breadth of verification. New: whether tests are run continuously. "),
+ ("verification_testing_style", "Verification / Testing Style", "test_execution", "same", "Both ask how much verification to run; the new rubric spells out tests, blocking checks, and review passes. "),
  ("optimization", "Optimization", "—", "not found", "67 statements (0.7%) mention performance; two-thirds fall in noise. Too rare and too scattered to form a cluster."),
  ("documentation_preference", "Documentation Preference", "documentation_workflow", "partial", "Old axis: how much explanation lives with the code. New: whether docs are maintained as an explicit workflow step. Depth vs. brevity did not separate in this run (it did in the v1 run)."),
  ("implementation_explicitness", "Implementation Explicitness", "—", "not found", "91 statements (1.0%) about compact vs. explicit code; half in noise. No cluster."),

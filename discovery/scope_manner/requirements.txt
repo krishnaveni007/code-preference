@@ -1,0 +1,7 @@
+litellm
+python-dotenv
+pandas
+pyarrow
+numpy
+scikit-learn
+matplotlib

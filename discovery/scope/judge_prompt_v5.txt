@@ -1,0 +1,19 @@
+Two messages a developer sent to an AI coding agent at two different moments. Message A came first.
+Suppose the agent remembered what the developer asked for in message A and is now in the situation of message B.
+First identify the main request of each message, then classify how B relates to A:
+
+same: B's main request is A's main request. B may reword it, restate it with an added clarification, or apply it to a different file, issue or task. The direction must match ("split it up" vs "this is split too finely" is NOT same).
+Two cases that are same even though they look different: (1) B gives the same instructions about how to work as A, for a different task (e.g. "write a design doc first", "use subagents with model X", the same review checklist); (2) B's workflow equals A's except for one minor step added or left out, or a different order.
+related: B is about the same specific matter as A (the same feature, setting, workflow step or kind of change), but B's main request differs from A's: a different aspect of it, an additional requirement, or the next step.
+conflict: B explicitly asks for the opposite of what A asked about the same thing, so following A would go against B (e.g. "detailed commit messages" vs "simple, not verbose commit messages"; "use tool X" vs "don't use tool X"; "no download option" vs "add a download option"). Leaving out a step that A had, adding steps, or a different order of steps is NOT a conflict.
+unrelated: B's main request concerns a different matter. Being about the same app, project or codebase is not enough to be related; neither is agreeing to an option when the options are about different things.
+
+Concrete one-off requests count too: if A and B ask for the same action (e.g. "merge the PR"), that is same.
+
+Message A:
+{a}
+
+Message B:
+{b}
+
+Answer with JSON: {{"label": "same" | "related" | "conflict" | "unrelated", "why": "<at most 15 words>"}}

@@ -144,8 +144,9 @@ position only; identity by label, not colour).
 3. **Finalise by hand** (`finalize_rubrics.py`, edits recorded in the script): merged branch-creation into Git
    Automation, research-first into Upfront Planning, and the two UI clusters into one; dropped Session State
    Management (describes the product being built, not the agent); moved "secrets must not be hardcoded" to a
-   uniform requirement (no developer wants the opposite). Five further rubrics were removed by decision:
-   Review Gating, Commit Granularity, Naming Descriptiveness, UI Polish, Quality Gate Strictness.
+   uniform requirement (no developer wants the opposite). Three further rubrics were removed by decision: Commit Granularity, Naming Descriptiveness, UI Polish.
+   Review-before-proceeding (cluster 13) and lint/type gates (cluster 16) were merged into Test Execution: all three
+   are verification before a change counts as done.
 
 **Final set: 15 rubrics** (`final/rubrics_final.md` with examples and originals, `final/rubrics_final_compact.md`
 rubric text only, `final/rubrics_final.json`).
@@ -153,7 +154,7 @@ rubric text only, `final/rubrics_final.json`).
 | # | rubric | id | turns | Low side has supporting statements |
 |---|---|---|---|---|
 | 1 | Documentation Workflow | `documentation_workflow` | 724 | no |
-| 2 | Test Execution | `test_execution` | 638 | no |
+| 2 | Test Execution | `test_execution` | 930 | yes |
 | 3 | Refactoring Tolerance | `refactoring_tolerance` | 260 | no |
 | 4 | Git Automation | `git_automation` | 357 | yes |
 | 5 | Upfront Planning | `upfront_planning` | 367 | yes |
@@ -169,8 +170,9 @@ rubric text only, `final/rubrics_final.json`).
 | 15 | Uncertainty Disclosure | `uncertainty_disclosure` | 98 | yes |
 
 High/Low follow the convention of the original 14 (High = more documentation / more tests / more restructuring /
-more automation / more autonomy / external dependencies / recovery on failure / more logging / parallel). For four
-rubrics (documentation, tests, refactoring, config) no statement in the data takes the Low side; the Low text is
+more automation / more autonomy / external dependencies / recovery on failure / more logging / parallel). For three
+rubrics (documentation, refactoring, config) no statement in the data takes the Low side, and for Test Execution only
+the review part has Low-side statements (from the autonomous-completion cluster); the Low text is
 the logical opposite and is marked as such.
 
 Rubric text:
@@ -182,10 +184,10 @@ Low: Keep documentation minimal; touch it only when asked
 N/A: The task is itself a documentation task, or no documentation exists to maintain
 
 **Test Execution**
-Description: How actively the agent should run and extend tests while working
-High: Run the test suite continuously, add or extend tests with every change, treat tests as part of the deliverable
-Low: Run only the tests directly relevant to the change, or only when asked
-N/A: The task is itself a testing task, or the project has no test infrastructure
+Description: How much verification the agent should run before a change counts as done: tests, automated checks, and review
+High: Run and extend tests continuously, enforce lint/type/format checks as blocking gates, and route changes through review passes before finalizing
+Low: Verify only what the change directly touches; treat checks and review as optional or deferred
+N/A: The task is itself a verification task, or the project has no test, check, or review infrastructure
 
 **Refactoring Tolerance**
 Description: How much existing code the agent should restructure while making a change
@@ -273,9 +275,9 @@ N/A: The output contains no claims of fact
 | Refactoring Tolerance | refactoring_tolerance | same | Same question. |
 | Abstraction Preference | refactoring_tolerance | absorbed | Statements about extracting helpers / reuse (213) mostly landed in the refactoring cluster; no separate cluster formed. |
 | Dependency Preference | dependency_preference | same | Same question; most statements in the data take the built-in side. |
-| Constraint Explicitness | — | not found | Type/schema/assertion statements (216) landed mainly in the quality-gates and testing clusters; typing appears as a gate to enforce rather than a code-design choice. The quality-gates cluster was not kept as a rubric. |
+| Constraint Explicitness | test_execution | absorbed | Type/schema/assertion statements (216) landed mainly in the lint/type-gate and testing clusters, both now inside test_execution; typing appears as a check to enforce rather than a code-design choice. |
 | Failure Handling | failure_handling | same | Same question. |
-| Verification / Testing Style | test_execution | partial | Old axis: breadth of verification. New: whether tests are run continuously.  |
+| Verification / Testing Style | test_execution | same | Both ask how much verification to run; the new rubric spells out tests, blocking checks, and review passes.  |
 | Optimization | — | not found | 67 statements (0.7%) mention performance; two-thirds fall in noise. Too rare and too scattered to form a cluster. |
 | Documentation Preference | documentation_workflow | partial | Old axis: how much explanation lives with the code. New: whether docs are maintained as an explicit workflow step. Depth vs. brevity did not separate in this run (it did in the v1 run). |
 | Implementation Explicitness | — | not found | 91 statements (1.0%) about compact vs. explicit code; half in noise. No cluster. |

@@ -1,0 +1,17 @@
+You restate what a developer asked an AI coding agent to do. You will see the agent's previous reply (possibly truncated) and the developer's message. Output JSON only.
+
+Fields:
+
+"topic": the kind of matter the request is about, phrased so that the same phrase would fit a request on a completely different project. Name the practice or decision, not the object it is applied to. Good: "commit granularity", "who pushes to remote", "parallel vs sequential bug fixing", "pace of changes", "where test helpers live", "which model the agent uses". Bad: any phrase containing a project name, feature name, file, identifier, or the specific bug being fixed. 3-8 words.
+
+"asked": what the developer asked for, in one neutral sentence in the developer's own terms. Use the previous reply only to resolve references ("it", "them", "that", "option c"); do not import any other content from it. Do not add a rejected alternative, a reason, or a general rule the developer did not state. Keep tool, library and service names; drop file paths, identifiers and project names. If the message is a bare agreement ("yes", "go ahead"), state what was agreed to.
+
+"corrects": if the developer is objecting to or redirecting something the agent just did or proposed, state that thing in a few words, taken from the previous reply or the developer's message. Otherwise "".
+
+"condition": a circumstance the developer explicitly tied the request to: a time limit ("for now", "this time"), a situation ("when X", "if Y", "unless Z"), or an explicit scope ("only for the tests"). Copy or closely paraphrase the developer's words. Not a condition: the purpose of the request ("to test it out"), the object of the request ("for the 1.3.1 release"), emphasis or tone. If none is stated, "".
+
+"trigger": "correction" if "corrects" is non-empty; "answer" if the developer is answering a question or choosing among options the agent offered; otherwise "unprompted".
+
+"quote": the shortest span of the developer's message that supports "asked", copied verbatim.
+
+If the message contains no request or stance at all (pure status report, pure question with no ask), set "asked" to "" and still fill "topic".

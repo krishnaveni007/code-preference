@@ -20,8 +20,7 @@ SURFACE, INK, NOISE, DROPPED_GRAY = "#ffffff", "#0b0b0b", "#c8c7c1", "#7a7975"
 # replaced by gold so gray stays reserved for clusters that were not kept as rubrics
 PALETTE = [plt.cm.tab20(i) for i in (0, 2, 4, 6, 8, 10, 12)] + ["#e6ab02"] + [plt.cm.tab20(i) for i in (16, 18, 1, 3, 5, 7, 9)]
 # clusters (by turn-count rank) that were examined but not kept as rubrics
-DROPPED = {8: "Session State", 9: "Commit Granularity", 11: "UI Layout", 13: "Review Gating",
-           16: "Quality Gates", 19: "UI Color", 20: "Naming"}
+DROPPED = {8: "Session State", 9: "Commit Granularity", 11: "UI Layout", 19: "UI Color", 20: "Naming"}
 
 
 def densest(pts: np.ndarray, k: int = 20) -> np.ndarray:
