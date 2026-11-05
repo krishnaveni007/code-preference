@@ -37,6 +37,9 @@ generated artifacts. This repo tracks the *code* that produces them, not the dat
    descriptive statistics for the writeup (separate from the preference-scoring pipeline above).
 8. **Turn replay** (`src/turn_replay/`) — paired one-turn Codex replays over reconstructed real SWE Chat
    instances, with strict separation between agent-visible inputs and future-turn evaluation data.
+9. **Preference-memory replay** (`src/pref_memory_replay/`) — replays one recorded SWE-chat Claude Code turn
+   (a correction, or an unprompted preference statement) at its restored repo state, with no memory, the user's
+   real memory store, or C2 preference notes, and judges whether the user's pushback would still be likely.
 
 See the README in each `src/` subfolder for what each script does and how to run it.
 
