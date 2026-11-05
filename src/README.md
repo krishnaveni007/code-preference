@@ -9,5 +9,6 @@ Pipeline code, grouped by stage. Run in roughly this order:
 5. [`case_study/`](case_study/README.md) — deep dive on one representative user
 6. [`diagnostics/`](diagnostics/README.md) — exploratory single-session tools used during development (not part of the main run)
 7. [`swe-chat-stats/`](swe-chat-stats/README.md) — separate sub-pipeline for dataset-wide descriptive statistics
+8. [`pref_memory_replay/`](pref_memory_replay/README.md) — turn-level replay of preference memory with Claude Code (separate from `turn_replay/`, the Codex replays)
 
 All scripts are run from the repository root, e.g. `python src/vectorization/chat_pref_vectorise_v2.py ...`.

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Turn replay viewer</title>
+<style>
+:root{--bg:#fff;--fg:#1c1c1c;--mut:#666;--line:#e3e3e3;--card:#f7f7f5;--acc:#2456c4;--good:#2c7a4b;--bad:#c0392b;--mid:#b26a00;--mem:#6b3fa0;--code:#f0f0ec}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#15161a;--fg:#e8e8e8;--mut:#9a9a9a;--line:#2d2f36;--card:#1e2026;--acc:#7da2ff;--good:#5fc98a;--bad:#ff6b5b;--mid:#f0b35a;--mem:#c39bff;--code:#24262d}}
+:root[data-theme=dark]{--bg:#15161a;--fg:#e8e8e8;--mut:#9a9a9a;--line:#2d2f36;--card:#1e2026;--acc:#7da2ff;--good:#5fc98a;--bad:#ff6b5b;--mid:#f0b35a;--mem:#c39bff;--code:#24262d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{padding:12px 16px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+header h1{font-size:16px;margin:0;font-weight:600}
+.tabs{display:flex;gap:4px}.tabs button{font:inherit;padding:6px 14px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:6px;cursor:pointer}
+.tabs button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+main{padding:12px 16px;max-width:1500px;margin:0 auto}
+.card{border:1px solid var(--line);border-radius:8px;background:var(--card);padding:10px 12px;margin:0 0 12px}
+.card h2{font-size:15px;margin:0 0 6px}.mut{color:var(--mut);font-size:13px}
+pre,.pre{white-space:pre-wrap;word-break:break-word;font:12.5px/1.45 ui-monospace,Menlo,monospace;margin:4px 0;background:var(--code);padding:6px 8px;border-radius:6px;max-height:340px;overflow:auto}
+.prose{white-space:pre-wrap;word-break:break-word;margin:4px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{color:var(--mut);font-weight:600}td.arm{min-width:150px}td.turn{min-width:220px;max-width:300px}
+summary.pv{font-weight:400;font-size:12.5px;color:var(--mut)}
+.tablewrap{overflow-x:auto}.tablewrap table{min-width:900px}tr.click{cursor:pointer}tr.click:hover td,tr.on td{background:var(--code)}
+.v{font-weight:700;padding:1px 8px;border-radius:10px;border:1px solid currentColor;font-size:12px;white-space:nowrap}
+.v.good{color:var(--good)}.v.bad{color:var(--bad)}.v.mid{color:var(--mid)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media (max-width:900px){.cols{grid-template-columns:1fr}}
+.col{border:1px solid var(--line);border-radius:8px;padding:10px;min-width:0}
+.col select{font:inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);width:100%;margin-bottom:8px}
+details{margin:6px 0}details>summary{cursor:pointer;font-weight:600}
+.sec{margin:10px 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut)}
+.step{border-left:3px solid var(--line);padding:2px 8px;margin:4px 0}
+.step.text{border-color:var(--acc)}.step.mem{border-color:var(--mem)}.step.err{border-color:var(--bad)}
+.tool{font:12.5px ui-monospace,Menlo,monospace}.tool b{color:var(--acc)}.step.mem .tool b{color:var(--mem)}
+.memtag{color:var(--mem);font-weight:600}
+ul.ev{margin:4px 0;padding-left:18px}ul.ev li{margin:3px 0}
+footer{color:var(--mut);font-size:12px;padding:10px 16px;border-top:1px solid var(--line)}
+@media (max-width:600px){header{padding:10px}main{padding:10px}}
+</style></head><body>
+<header><h1>Turn-level replay</h1><div class="tabs" id="tabs"></div><span class="mut" id="sub"></span></header>
+<main id="main"></main>
+<footer>Each arm resumes the recorded transcript at the turn, at the same repo commit, and runs one agent turn (Sonnet 5.5 [1m],
+Claude Code 2.1.273, Docker). Memory arms mount a memory folder as the project's auto-memory: MEMORY.md is loaded into context
+automatically; notes count as "opened" only when the agent Read them. The judge (Opus 5.5, tool-less) sees the preference, the
+recorded correction (C) or the preference sentence (U), the prompt the agent saw, and the rendered turn. One run per arm.</footer>
+<script id="data" type="application/json">/*DATA*/</script>
+<script>
+const CASES = JSON.parse(document.getElementById('data').textContent);
+const $ = (t, a = {}, ...kids) => { const e = document.createElement(t); for (const [k, v] of Object.entries(a)) k === 'class' ? e.className = v : k === 'html' ? e.innerHTML = v : e.setAttribute(k, v); for (const c of kids) e.append(c); return e; };
+const esc = s => (s ?? '').replace(/[&<>]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;'}[c]));
+
+function verdict(c, arm) {
+  const j = arm.judge || {};
+  if (c.kind === 'C') {
+    const v = j.correction_warranted;
+    return {label: 'Correction warranted', v, cls: v === 'no' ? 'good' : v === 'yes' ? 'bad' : 'mid', push: v};
+  }
+  const v = j.follows_preference;
+  return {label: 'Follows preference', v, cls: v === 'yes' ? 'good' : v === 'no' ? 'bad' : 'mid',
+          push: v === 'yes' ? 'no' : v === 'no' ? 'yes' : 'partly'};
+}
+const badge = (vd) => $('span', {class: 'v ' + vd.cls}, vd.v ?? '—');
+const noteName = p => p.replace(/\\/g, '/').split('/').pop();
+
+function caseCard(c) {
+  const card = $('div', {class: 'card'});
+  card.append($('h2', {}, `${c.kind === 'C' ? 'Correction' : 'Unprompted'} turn · ${c.user} · session ${c.session.slice(0, 8)}`));
+  card.append($('div', {class: 'mut'}, `${c.group} · repo at ${c.sha} on ${c.branch}`));
+  card.append($('div', {class: 'prose'}, c.note));
+  if (c.correction) card.append($('details', {}, $('summary', {}, 'Recorded correction (the pushback the judge asks about): ',
+    $('span', {class: 'mut'}, c.correction.split(/\s+-\s+\[|\n/)[0].slice(0, 120))), $('pre', {}, c.correction)));
+  if (c.span) { card.append($('div', {class: 'sec'}, 'Preference sentence (removed in the ablated arms)')); card.append($('pre', {}, c.span)); }
+  return card;
+}
+
+function summary(c, pick) {
+  const t = $('table');
+  t.append($('tr', {}, ...['Arm', 'User turn (n−1)', 'Agent response (summary)', 'Judge reasoning (summary)', 'Pushback likely'].map(h => $('th', {}, h))));
+  c.arms.forEach((a, i) => {
+    const vd = verdict(c, a);
+    const tr = $('tr', {class: 'click', title: 'show in the right column'});
+    const mem = a.mem_reads.length ? 'notes opened: ' + a.mem_reads.map(m => noteName(m.path).replace('.md', '')).join(', ')
+      : a.mem_index ? 'memory loaded, no note opened' : 'no memory';
+    tr.append($('td', {class: 'arm'}, $('b', {}, a.label), $('div', {class: 'mut'}, mem)));
+    const head = a.prompt.replace(/\s+/g, ' ').slice(0, 130);
+    const pr = $('details', {}, $('summary', {class: 'pv'}, head + (a.prompt.length > 130 ? ' …' : '')), $('pre', {}, a.prompt));
+    pr.onclick = e => e.stopPropagation();
+    tr.append($('td', {class: 'turn'}, a.variant === 'ablated' ? $('div', {class: 'mut'}, 'preference sentence removed') : '', pr));
+    tr.append($('td', {}, a.summary.agent || '—'));
+    tr.append($('td', {}, $('div', {}, $('span', {class: 'mut'}, vd.label + ': '), badge(vd)), a.summary.judge || '—'));
+    tr.append($('td', {}, $('span', {class: 'v ' + vd.cls}, vd.push ?? '—')));
+    tr.onclick = () => pick(i);
+    t.append(tr);
+  });
+  return $('div', {class: 'card'}, $('h2', {}, 'All arms'), $('div', {class: 'mut'},
+    'Pushback likely: for C, whether the user would still need the recorded correction; for U, the opposite of "follows preference". Summaries are written by Opus 5.5 from the turn and the judge rationale; click a row to open the arm below.'),
+    $('div', {class: 'tablewrap'}, t));
+}
+
+function column(c, idx, onChange) {
+  const col = $('div', {class: 'col'});
+  const sel = $('select');
+  c.arms.forEach((a, i) => { const o = $('option', {value: i}, a.label); if (i === idx) o.selected = true; sel.append(o); });
+  sel.onchange = () => onChange(+sel.value);
+  col.append(sel);
+  const a = c.arms[idx], vd = verdict(c, a);
+
+  col.append($('div', {class: 'sec'}, 'Judge'));
+  col.append($('div', {}, $('b', {}, vd.label + ': '), badge(vd), $('span', {class: 'mut'}, `  · pushback likely: ${vd.push ?? '—'} · ${a.judge_model || ''}`)));
+  if (a.judge.rationale) col.append($('div', {class: 'prose'}, a.judge.rationale));
+  if (a.judge.evidence) { const ul = $('ul', {class: 'ev'}); a.judge.evidence.forEach(e => ul.append($('li', {}, e))); col.append(ul); }
+
+  col.append($('div', {class: 'sec'}, 'Memory'));
+  if (a.mem_index) {
+    const d = $('details', {}, $('summary', {}, `MEMORY.md (${a.mem_name}) — loaded into context automatically`), $('pre', {}, a.mem_index));
+    col.append(d);
+  } else col.append($('div', {class: 'mut'}, a.run === 'recorded' ? 'The user\'s memory index at the time is not in the transcript (loaded silently).' : 'No memory mounted.'));
+  if (a.mem_reads.length) a.mem_reads.forEach(m => col.append($('details', {}, $('summary', {class: 'memtag'}, 'Opened: ' + noteName(m.path)), $('pre', {}, m.text))));
+  else if (a.mem_index || a.run === 'recorded') col.append($('div', {class: 'mut'}, 'No memory note opened in this turn.'));
+
+  col.append($('div', {class: 'sec'}, 'Prompt the agent saw'));
+  col.append($('details', {}, $('summary', {}, a.variant === 'ablated' ? 'Ablated prompt' : 'Original prompt'), $('pre', {}, a.prompt)));
+
+  col.append($('div', {class: 'sec'}, `Agent turn · ${a.steps.filter(s => s.k === 'tool').length} tool calls`));
+  const last = a.steps.map(s => s.k).lastIndexOf('text');
+  if (last >= 0) col.append($('details', {open: ''}, $('summary', {}, 'Final message'), $('div', {class: 'prose step text'}, a.steps[last].t)));
+  const all = $('details', {}, $('summary', {}, 'Full turn (prose, tool calls, results)'));
+  a.steps.forEach((s, i) => {
+    if (s.k === 'text') { all.append($('div', {class: 'step text prose'}, s.t)); return; }
+    const st = $('div', {class: 'step' + (s.mem ? ' mem' : '') + (s.err ? ' err' : '')});
+    st.append($('div', {class: 'tool', html: `<b>${esc(s.name)}</b>${s.mem ? ' <span class="memtag">[memory]</span>' : ''} ${esc(s.arg)}`}));
+    if (s.res) st.append($('details', {}, $('summary', {class: 'mut'}, 'result'), $('pre', {}, s.res)));
+    all.append(st);
+  });
+  col.append(all);
+  if (a.diff) col.append($('details', {}, $('summary', {}, `Diff (${a.diff.split('\n').length} lines)`), $('pre', {}, a.diff)));
+  else if (a.run !== 'recorded') col.append($('div', {class: 'mut'}, 'No file changes.'));
+  return col;
+}
+
+const KINDS = ['C', 'U'];
+const COLS = {C: [['recorded', 'Original'], ['c0_r1', 'No memory'], ['mem_r1', 'Real memory'], ['c2p_r1', 'C2 memory']],
+              U: [['recorded', 'Original'], ['full_c0_r1', 'Full · no mem'], ['ablated_c0_r1', 'Ablated · no mem'],
+                  ['ablated_mem_r1', 'Ablated · real mem'], ['ablated_c2p_r1', 'Ablated · C2']]};
+let state = {kind: 'C', sel: {}, left: {}, right: {}};
+
+function overview(kind, onPick) {
+  const cs = CASES.filter(c => c.kind === kind), cols = COLS[kind];
+  const t = $('table');
+  t.append($('tr', {}, $('th', {}, 'Case'), $('th', {}, 'Preference'), ...cols.map(([, h]) => $('th', {}, h))));
+  const tally = cols.map(() => ({yes: 0, partly: 0, no: 0, n: 0}));
+  cs.forEach(c => {
+    const tr = $('tr', {class: 'click' + (state.sel[kind] === c.id ? ' on' : '')});
+    tr.append($('td', {}, $('b', {}, c.user), $('div', {class: 'mut'}, c.repo)));
+    tr.append($('td', {}, $('div', {}, c.dim || ''), $('div', {class: 'mut'}, c.side || '')));
+    cols.forEach(([run], i) => {
+      const a = c.arms.find(x => x.run === run);
+      if (!a) { tr.append($('td', {class: 'mut'}, '—')); return; }
+      const vd = verdict(c, a);
+      if (vd.push in tally[i]) { tally[i][vd.push]++; tally[i].n++; }
+      tr.append($('td', {}, $('span', {class: 'v ' + vd.cls}, vd.push ?? '?'),
+        a.mem_reads.length ? $('div', {class: 'mut'}, `${a.mem_reads.length} note${a.mem_reads.length > 1 ? 's' : ''} opened`) : ''));
+    });
+    tr.onclick = () => onPick(c.id);
+    t.append(tr);
+  });
+  t.append($('tr', {}, $('td', {}, $('b', {}, 'Pushback likely: no / partly / yes')), $('td', {}),
+    ...tally.map(x => $('td', {}, x.n ? `${x.no} / ${x.partly} / ${x.yes}` : '—'))));
+  return $('div', {class: 'card'}, $('h2', {}, `${kind === 'C' ? 'Correction' : 'Unprompted'} cases (${cs.length})`),
+    $('div', {class: 'mut'}, 'Cell = pushback likely for that arm (C: would the user still need the recorded correction; U: the opposite of "follows preference"). One run per arm. Click a case for its detail.'),
+    $('div', {class: 'tablewrap'}, t));
+}
+
+function render() {
+  const kind = state.kind, main = document.getElementById('main');
+  const cs = CASES.filter(c => c.kind === kind);
+  const id = state.sel[kind] ?? cs[0]?.id;
+  state.sel[kind] = id;
+  const c = CASES.find(x => x.id === id);
+  main.replaceChildren();
+  document.getElementById('sub').textContent = c ? c.id : '';
+  main.append(overview(kind, cid => { state.sel[kind] = cid; render(); document.getElementById('detail')?.scrollIntoView(); }));
+  if (!c) return;
+  const n = c.arms.length;
+  // default: the no-memory arm with the same prompt as the last (memory) arm, against that memory arm
+  const base = Math.max(0, c.arms.findIndex(a => a.run !== 'recorded' && !a.mem_name && a.variant === c.arms[n - 1].variant));
+  const L = state.left[c.id] ?? base, R = state.right[c.id] ?? n - 1;
+  const detail = $('div', {id: 'detail'});
+  detail.append(caseCard(c), summary(c, i => { state.right[c.id] = i; render(); }));
+  detail.append($('div', {class: 'cols'},
+    column(c, L, i => { state.left[c.id] = i; render(); }),
+    column(c, R, i => { state.right[c.id] = i; render(); })));
+  main.append(detail);
+  document.querySelectorAll('#tabs button').forEach((b, i) => b.classList.toggle('on', KINDS[i] === kind));
+  try { localStorage.setItem('replayKind', kind); } catch (e) {}
+}
+KINDS.forEach(k => { const b = $('button', {}, k === 'C' ? 'C · correction' : 'U · unprompted'); b.onclick = () => { state.kind = k; render(); }; document.getElementById('tabs').append(b); });
+try { const k = localStorage.getItem('replayKind'); if (KINDS.includes(k)) state.kind = k; } catch (e) {}
+render();
+</script></body></html>
